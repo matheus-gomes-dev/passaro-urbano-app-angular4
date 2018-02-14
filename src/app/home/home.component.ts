@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { OfertasService } from '../ofertas.service'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [OfertasService]
+  //forma correta de trabalhar com services é fazendo a declaração no providers
+  //dessa forma o serviço fica disponível para todos os componentes filhos de home
+  //se tivesse declarado no app.module.ts, serviço estaria disponível globalmente, já
+  //que todas as classes são filhas de app
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ofertasService: OfertasService) {}
 
   ngOnInit() {
+  	console.log(this.ofertasService.getOfertas())
   }
 
 }
