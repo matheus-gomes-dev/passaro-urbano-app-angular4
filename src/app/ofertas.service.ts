@@ -1,6 +1,11 @@
 import { Oferta } from './shared/oferta.model'
+import { Http } from '@angular/http'
+import { Injectable } from '@angular/core'
 
-export class OfertasService{
+//preciso utilizar @Injectable para injetar um serviço do angular em um serviço
+@Injectable() export class OfertasService{
+
+	constructor(private http: Http){} //serviço utilizado precisa constar no construtor
 
 	public ofertas: Array<Oferta> = [
 		{
