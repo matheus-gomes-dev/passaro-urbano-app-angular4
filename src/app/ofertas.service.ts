@@ -11,8 +11,14 @@ import  'rxjs/add/operator/toPromise' //para converter observable para promise
 	constructor(private http: Http){} //serviço utilizado precisa constar no construtor
 
 	public getOfertas(): Promise<Oferta[]> {
-		return this.http.get('http://localhost:3000/ofertas')
+		return this.http.get('http://localhost:3000/ofertas?destaque=true')
 			.toPromise() //método http retorna um observable. Por hora passaremos para promise
+			.then((resposta: any) => resposta.json())
+	}
+
+	public getOfertasPorCategoria(categoria: string) : Promise<Oferta[]> {
+		return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+			.toPromise()
 			.then((resposta: any) => resposta.json())
 	}
 }
