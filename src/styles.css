@@ -33,3 +33,7 @@ nav{
 	padding-left: 15px;
 	margin-bottom: 60px;
 }
+
+.card-text{
+    height: 60px;
+}

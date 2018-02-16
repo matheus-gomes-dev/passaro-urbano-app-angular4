@@ -2,70 +2,17 @@ import { Oferta } from './shared/oferta.model'
 import { Http } from '@angular/http'
 import { Injectable } from '@angular/core'
 
+import  'rxjs/add/operator/toPromise' //para converter observable para promise
+
+
 //preciso utilizar @Injectable para injetar um serviço do angular em um serviço
 @Injectable() export class OfertasService{
 
 	constructor(private http: Http){} //serviço utilizado precisa constar no construtor
 
-	public ofertas: Array<Oferta> = [
-		{
-			id: 1,
-			categoria: "restaurante",
-			titulo: "Super Burger",
-			descricao_oferta: "Rodízio de Mini-hambúrger com opção de entrada.",
-			anunciante: "Original Burger",
-			valor: 29.90,
-			destaque: true,
-			imagens: [
-				{url: "/assets/ofertas/1/img1.jpg"},
-				{url: "/assets/ofertas/1/img2.jpg"},
-				{url: "/assets/ofertas/1/img3.jpg"},
-				{url: "/assets/ofertas/1/img4.jpg"}
-			]
-		},
-		{
-			id: 2,
-			categoria: "restaurante",
-			titulo: "Cozinha Mexicana",
-			descricao_oferta: "Almoço ou Jantar com Rodízio Mexicano delicioso.",
-			anunciante: "Mexicana",
-			valor: 32.90,
-			destaque: true,
-			imagens: [
-				{url: "/assets/ofertas/2/img1.jpg"},
-				{url: "/assets/ofertas/2/img2.jpg"},
-				{url: "/assets/ofertas/2/img3.jpg"},
-				{url: "/assets/ofertas/2/img4.jpg"}
-			]
-		
-		},
-		{
-			id: 4,
-			categoria: "diversao",
-			titulo: "Estância das águas",
-			descricao_oferta: "Diversão garantida com piscinas, trilhas e muito mais.",
-			anunciante: "Estância das águas",
-			valor: 31.90,
-			destaque: true,
-			imagens: [
-				{url: "/assets/ofertas/3/img1.jpg"},
-				{url: "/assets/ofertas/3/img2.jpg"},
-				{url: "/assets/ofertas/3/img3.jpg"},
-				{url: "/assets/ofertas/3/img4.jpg"},
-				{url: "/assets/ofertas/3/img5.jpg"},
-				{url: "/assets/ofertas/3/img6.jpg"}
-			]
-		}
-	]
-
-	public getOfertas(): Array<Oferta> {
-		return this.ofertas
-	}
-
-	public getOfertasAsync(): Promise<Array<Oferta>>{
-		return new Promise((resolve, reject) => {
-			console.log("test");
-			resolve(this.ofertas)
-		})
+	public getOfertas(): Promise<Oferta[]> {
+		return this.http.get('http://localhost:3000/ofertas')
+			.toPromise() //método http retorna um observable. Por hora passaremos para promise
+			.then((resposta: any) => resposta.json())
 	}
 }
