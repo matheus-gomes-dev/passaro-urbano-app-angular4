@@ -11,4 +11,5 @@ export const ROUTES: Routes = [
 	{ path: 'diversao', component: DiversaoComponent},
 	{ path: 'oferta', component: OfertaComponent},
 	{ path: 'oferta/:id', component: OfertaComponent}
+	//{ path: 'oferta/:id/subId', component: OfertaComponent} caso queria passar mais parametros
 ]
