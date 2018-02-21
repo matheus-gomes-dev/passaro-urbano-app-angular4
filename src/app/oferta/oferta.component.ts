@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Oferta } from '../shared/oferta.model'
 import { OfertasService } from '../ofertas.service'
+import { Observable } from 'rxjs/Observable'
+import { Observer } from 'rxjs/Observer'
+import { Subscription } from 'rxjs/Subscription'
+import 'rxjs/Rx'
 
 @Component({
   selector: 'app-oferta',
@@ -9,21 +13,53 @@ import { OfertasService } from '../ofertas.service'
   styleUrls: ['./oferta.component.css'],
   providers: [ OfertasService ]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
+
+  private tempoObservableSubscription: Subscription
+  private meuObservableTesteSubscription: Subscription
 
   public oferta: Oferta
 
-  constructor(private route: ActivatedRoute, private ofertasService: OfertasService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private ofertasService: OfertasService
+  ) { }
 
   ngOnInit() {
-  	console.log("ID recuperado da rota: ", this.route.snapshot.params['id'])
-  	//console.log("ID recuperado da rota: ", this.route.snapshot.params['subId']) caso queira passar mais parametros
-  	this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
-  		.then((oferta: Oferta) => {
-  			console.log(oferta)
-  			this.oferta = oferta
-  		})
+    this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
+      .then(( oferta: Oferta ) => {
+        this.oferta = oferta
+        //console.log(this.oferta)
+      })
 
+    //definindo intervalo para o observable
+    let tempo = Observable.interval(2000)
+
+    this.tempoObservableSubscription = tempo.subscribe((intervalo: number) => {
+      console.log(intervalo)
+    })
+
+    //observable (observável) -- analogia como event emitter
+    let meuObservableTeste = Observable.create((observer: Observer<number>) => {
+      observer.next(1) //executado como primeiro parametro do subscribe
+      observer.next(3) //executado como primeiro parametro do subscribe
+      observer.complete() //executado como terceiro parametro do subscribe
+      observer.error('Erro durante o processo!') // //executado como segundo parametro do subscribe
+      observer.next(3) //executado como primeiro parametro do subscribe
+    })
+
+    //observable (observador) -- analogia com event listener
+    this.meuObservableTesteSubscription = meuObservableTeste.subscribe(
+      (resultado: number) => console.log(resultado + 10), //primeiro parametro do subscribe
+      (erro: string) => console.log(erro), //segundo parametro do subscribe
+      () => console.log('Stream de eventos foi finalizada') //terceiro parametro do subscribe
+    )
+  }
+
+  ngOnDestroy() {
+    //encerra observables quando sai do escopo da página
+    this.meuObservableTesteSubscription.unsubscribe()
+    this.tempoObservableSubscription.unsubscribe()
   }
 
 }
