@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable'
 import { URL_API } from './app.api'
 import 'rxjs/add/operator/toPromise' //para converter observable para promise
 import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/retry'
 
 
 //preciso utilizar @Injectable para injetar um serviço do angular em um serviço
@@ -44,6 +45,7 @@ import 'rxjs/add/operator/map'
 
 	public pesquisaOfertas(termo: string): Observable<Oferta[]> {
 		return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+			.retry(10) //tentará fazer consulta 10 vezes caso haja falha
 			.map((resposta: any) => resposta.json())
 
 	}
