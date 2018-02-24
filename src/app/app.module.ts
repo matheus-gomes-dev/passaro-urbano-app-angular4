@@ -15,9 +15,14 @@ import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 
+/* --- importando opções para o locale --- */
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 registerLocaleData(ptBr)
+
+/* --- importando pipe customizada --- */
+import { DescricaoReduzida } from './shared/descricao-reduzida.pipe'
+
 
 @NgModule({
   declarations: [
@@ -29,14 +34,15 @@ registerLocaleData(ptBr)
     DiversaoComponent,
     OfertaComponent,
     ComoUsarComponent,
-    OndeFicaComponent
+    OndeFicaComponent,
+    DescricaoReduzida
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ { provide: LOCALE_ID, useValue:'pt-PT'} ],
+  providers: [ { provide: LOCALE_ID, useValue:'pt-BR'} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
