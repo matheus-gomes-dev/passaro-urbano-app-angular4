@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Params} from '@angular/router'
 import { Oferta } from '../shared/oferta.model'
 import { OfertasService } from '../ofertas.service'
 // import { Observable } from 'rxjs/Observable'
@@ -26,11 +26,22 @@ export class OfertaComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
+
+    this.route.params.subscribe((parametros: Params) => { //
+      this.ofertasService.getOfertaPorId(parametros.id)
       .then(( oferta: Oferta ) => {
         this.oferta = oferta
         //console.log(this.oferta)
       })
+    })
+
+    /* --- usar o snapshot como foi feito abaixo, faz com que apenas 
+    a primeira mudança dos parametros da url seja capturada --- */
+    // this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
+    //   .then(( oferta: Oferta ) => {
+    //     this.oferta = oferta
+    //     //console.log(this.oferta)
+    //   })
 
     //definindo intervalo para o observable
     // let tempo = Observable.interval(2000)
