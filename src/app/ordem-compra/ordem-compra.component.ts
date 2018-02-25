@@ -32,7 +32,7 @@ export class OrdemCompraComponent implements OnInit {
   constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() {
-    this.ordemCompraService.efetivarCompra()
+    //this.ordemCompraService.efetivarCompra()
   }
 
   public atualizaEndereco(endereco: string): void {
