@@ -21,7 +21,8 @@ import ptBr from '@angular/common/locales/pt';
 registerLocaleData(ptBr)
 
 /* --- importando pipe customizada --- */
-import { DescricaoReduzida } from './shared/descricao-reduzida.pipe'
+import { DescricaoReduzida } from './shared/descricao-reduzida.pipe';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component'
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DescricaoReduzida } from './shared/descricao-reduzida.pipe'
     OfertaComponent,
     ComoUsarComponent,
     OndeFicaComponent,
-    DescricaoReduzida
+    DescricaoReduzida,
+    OrdemCompraComponent
   ],
   imports: [
     BrowserModule,
