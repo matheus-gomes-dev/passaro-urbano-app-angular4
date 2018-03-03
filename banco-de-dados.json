@@ -262,6 +262,27 @@
       "complemento": "fwegwe",
       "formaPagamento": "dinheiro",
       "id": 11
+    },
+    {
+      "endereco": "gregegre",
+      "numero": "gr",
+      "complemento": "rge",
+      "formaPagamento": "debito",
+      "id": 12
+    },
+    {
+      "endereco": "Endereço A",
+      "numero": "10",
+      "complemento": "casa 1",
+      "formaPagamento": "debito",
+      "id": 13
+    },
+    {
+      "endereco": "fwewef",
+      "numero": "wfw",
+      "complemento": "fewfw",
+      "formaPagamento": "dinheiro",
+      "id": 14
     }
   ]
 }
