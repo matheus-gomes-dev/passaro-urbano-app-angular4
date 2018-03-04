@@ -18,8 +18,13 @@ class CarrinhoService{
 			oferta.valor,
 			1
 		)
-		console.log(itemCarrinho)
-		this.itens.push(itemCarrinho)
+
+		//verificar se o item não consta no carrinho
+		let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id)
+		if(itemCarrinhoEncontrado)
+			itemCarrinhoEncontrado.quantidade += 1
+		else
+			this.itens.push(itemCarrinho)
 	}
 }
 
