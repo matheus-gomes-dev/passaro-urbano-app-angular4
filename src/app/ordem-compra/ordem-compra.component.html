@@ -20,7 +20,7 @@
             <div class="col">
               <button type="button" class="btn btn-link">-</button>
               {{ item.quantidade }}
-              <button type="button" class="btn btn-link">+</button>
+              <button (click)="adicionar(item)" type="button" class="btn btn-link">+</button>
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
       
       <div class="form-row">
         <div class="form-group col d-flex justify-content-end">
-          <h4>Total do pedido: 61.80</h4>
+          <h4>Total do pedido: {{carrinhoService.totalCarrinhoCompras() | currency: 'BRL' : true }}</h4> <!-- template do componente também tem acesso aos serviços injetados -->
         </div>
       </div>
       <br />

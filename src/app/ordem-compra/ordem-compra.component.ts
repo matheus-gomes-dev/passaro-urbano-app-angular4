@@ -41,6 +41,9 @@ export class OrdemCompraComponent implements OnInit {
   			console.log("Pedido cadastrado com sucesso! ID do pedido: " + idPedido)
   			this.idPedidoCompra = idPedido
   		})
+  }
 
+  public adicionar(item: ItemCarrinho): void{
+    this.carrinhoService.adicionarQuantidade(item) //poderia incluir diratamente o método do serviço no template html também
   }
 }
