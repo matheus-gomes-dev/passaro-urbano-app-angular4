@@ -23,8 +23,12 @@ registerLocaleData(ptBr)
 
 /* --- importando pipe customizada --- */
 import { DescricaoReduzida } from './shared/descricao-reduzida.pipe';
+
+
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
+
+import { CarrinhoService } from './carrinho.service'
 
 @NgModule({
   declarations: [
@@ -47,7 +51,7 @@ import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ { provide: LOCALE_ID, useValue:'pt-BR'} ],
+  providers: [ CarrinhoService, { provide: LOCALE_ID, useValue:'pt-BR'} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router'
 import { Oferta } from '../shared/oferta.model'
 import { OfertasService } from '../ofertas.service'
-import CarrinhoService from '../carrinho.service'
+import { CarrinhoService } from '../carrinho.service' //ja está definido no nivel do módulo, mas ainda precisamos injetar no construtor
 // import { Observable } from 'rxjs/Observable'
 // import { Observer } from 'rxjs/Observer'
 // import { Subscription } from 'rxjs/Subscription'
@@ -12,7 +12,7 @@ import CarrinhoService from '../carrinho.service'
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-  providers: [ OfertasService, CarrinhoService ]
+  providers: [ OfertasService ]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
@@ -77,6 +77,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   public adicionarItemCarrinho(): void{
     this.carrinhoService.incluirItem(this.oferta)
+    console.log(this.carrinhoService.exibirItens())
   }
 
 }
