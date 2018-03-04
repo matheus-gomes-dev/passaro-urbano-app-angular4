@@ -46,4 +46,8 @@ export class OrdemCompraComponent implements OnInit {
   public adicionar(item: ItemCarrinho): void{
     this.carrinhoService.adicionarQuantidade(item) //poderia incluir diratamente o método do serviço no template html também
   }
+
+  public diminuir(item: ItemCarrinho): void{
+    this.carrinhoService.diminuirQuantidade(item) //poderia incluir diratamente o método do serviço no template html também
+  }
 }
