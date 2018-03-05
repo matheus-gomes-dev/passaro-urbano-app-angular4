@@ -1,3 +1,7 @@
+button:hover{
+    cursor: pointer;
+}
+
 .ordem-compra{
 	margin-top: 50px;
 	margin-bottom: 150px;

@@ -6,3 +6,7 @@ span {
     background: #0057A6;
     padding: 10px
 }
+
+button:hover{
+    cursor: pointer;
+}
