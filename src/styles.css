@@ -37,3 +37,7 @@ nav{
 .card-text{
     height: 60px;
 }
+
+button:hover{
+    cursor: pointer;
+}
