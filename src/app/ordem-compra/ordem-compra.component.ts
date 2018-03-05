@@ -29,18 +29,22 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra(formulario: NgForm): void {
-  	console.log(this.form.value)
-  	let pedido: Pedido = new Pedido(
-  		this.form.value.endereco,
-  		this.form.value.numero,
-  		this.form.value.complemento,
-  		this.form.value.formaPagamento
-  	)
-  	this.ordemCompraService.efetivarCompra(pedido)
-  		.subscribe((idPedido: number) => {
-  			console.log("Pedido cadastrado com sucesso! ID do pedido: " + idPedido)
-  			this.idPedidoCompra = idPedido
-  		})
+  	
+    if(!this.carrinhoService.exibirItens().length)
+      alert("Você não selecionou nenhum item!")
+    else{
+    	let pedido: Pedido = new Pedido(
+    		this.form.value.endereco,
+    		this.form.value.numero,
+    		this.form.value.complemento,
+    		this.form.value.formaPagamento
+    	)
+    	this.ordemCompraService.efetivarCompra(pedido)
+    		.subscribe((idPedido: number) => {
+    			console.log("Pedido cadastrado com sucesso! ID do pedido: " + idPedido)
+    			this.idPedidoCompra = idPedido
+    		})
+     }
   }
 
   public adicionar(item: ItemCarrinho): void{
