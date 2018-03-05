@@ -44,6 +44,7 @@ export class OrdemCompraComponent implements OnInit {
     		.subscribe((idPedido: number) => {
     			console.log("Pedido cadastrado com sucesso! ID do pedido: " + idPedido)
     			this.idPedidoCompra = idPedido
+          this.carrinhoService.limparCarrinho() //limpa carrinho após finalização do pedido
     		})
      }
   }
